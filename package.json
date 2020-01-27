@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/macheng2017/article#readme",
   "devDependencies": {
-    "vuepress": "^1.2.0"
+    "vuepress": "^1.2.0",
+    "vuepress-plugin-comment": "^0.7.2"
   }
 }
