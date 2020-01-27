@@ -4,8 +4,7 @@ module.exports = {
     themeConfig: {
         nav: [
             {text: 'Home', link: '/'},
-            {text: '前言', link: '/前言'},
-            {text: 'External', link: 'https://google.com'}
+            {text: '博客文章', link: '/前言'},
         ],
         displayAllHeaders: true,// 默认值：false
         sidebar: [
