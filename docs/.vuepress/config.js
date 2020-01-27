@@ -1,6 +1,6 @@
 module.exports = {
-    title: '马成的博客',
-    description: '博客',
+    title: '马成的日志',
+    description: '马成的日志',
     themeConfig: {
         nav: [
             {text: 'Home', link: '/'},
