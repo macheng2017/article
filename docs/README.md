@@ -1,5 +1,5 @@
 ---
-home: true
+home: false
 heroImage: null
 heroText: 马成的日志
 tagline: 只分享有价值的内容
