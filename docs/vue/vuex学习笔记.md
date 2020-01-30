@@ -40,7 +40,8 @@ state.obj = { ...state.obj, newProp: 123 }
 * [refactor:在大多数情况下，载荷应该是一个对象，这样可以包含多个字段并且记录的 mutation 会更易读： · macheng2017/review-vue@c31e985](https://github.com/macheng2017/review-vue/commit/c31e98566c84f55d4a35e1a0222abe7c180808a5)
 * [refactor:对象风格的提交方式 · macheng2017/review-vue@fcb2ffd](https://github.com/macheng2017/review-vue/commit/fcb2ffda1a679ac7ebb9b9f5f5e30fbccde85f60)
 * [refactor:使用mapMutations · macheng2017/review-vue@9695a96](https://github.com/macheng2017/review-vue/commit/9695a965906fd89af47e5b2fe1756bedd651c590)
-
+### Mutation 必须是同步函数
+一条重要的原则就是要记住 mutation 必须是同步函数
 * [Mutation | Vuex](https://vuex.vuejs.org/zh/guide/mutations.html#mutation-%E9%9C%80%E9%81%B5%E5%AE%88-vue-%E7%9A%84%E5%93%8D%E5%BA%94%E8%A7%84%E5%88%99)
 ### Action
 Action 类似于 mutation，不同在于：
