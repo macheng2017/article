@@ -21,15 +21,15 @@ module.exports = {
             },
             {
                 title: 'JavaScript',
-                children: getPath('JavaScript')
-            },
-            {
-                title: 'pm2部署',
-                children: getPath('pm2')
+                children: getPath('js')
             },
             {
                 title: '读书笔记',
                 children: getPath('book')
+            },
+            {
+                title: 'pm2部署',
+                children: getPath('pm2')
             },
             {
                 title: 'vue学习笔记',

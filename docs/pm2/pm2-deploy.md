@@ -74,7 +74,7 @@
           ~/.ssh/know_hosts    主机记录,第一次登陆之后主机信息,当你敲yes之后会被记录到这个文件
 
 
-![image](./images/ssh_show.png)
+![image](../.vuepress/public/pm2/img/ssh_show.png)
 
 
 		
@@ -95,7 +95,7 @@
 
 >### **服务器上的操作和本地一样,在子账号下使用如下命令,不要在root账户下操作**
 
-![image](./images/server-ls.jpg)
+![image](../.vuepress/public/pm2/img/server-ls.jpg)
 
 1. 最关键的一步就是需要在服务器上新建一个填写public key的文件
 vim ~/.ssh/authorized_keys
@@ -117,7 +117,7 @@ cat ~/.ssh/id_rsa.pub 复制本地的public key 粘贴进去
          cd test
          git clone 任意仓库的ssh地址,是ssh地址
 
-![image](./images/github_ssh.jpg)
+![img](../.vuepress/public/pm2/img/github_ssh.jpg)
 
 4. 测试本地到服务器的链接
         ssh userName@xxxx.xxx.xxx.xxx
@@ -133,15 +133,15 @@ cat ~/.ssh/id_rsa.pub 复制本地的public key 粘贴进去
 2. 在本地github项目根文件夹下    
 3. new一个ecosystem.json文件
   
-  ![image](./images/ecosystem.jpg)
+  ![image](../.vuepress/public/pm2/img/ecosystem.jpg)
   
   
-```json
+```json5
             {
         "apps":[
             {
-                "name":"Website",  //项目名称
-                "script":"app.js", //入口文件
+                "name":"Website",  // 项目名称
+                "script":"app.js", // 入口文件
                 "env":{
                     "COMMON_VARIABLE": "true" 
                 },
@@ -176,7 +176,7 @@ cat ~/.ssh/id_rsa.pub 复制本地的public key 粘贴进去
 
   6. 测试,新建app.js 我们就以node.js官网上的示例
 
-```JavaScript
+```js
     const http = require("http");
     
     const hostname = "0.0.0.0";
@@ -200,12 +200,12 @@ cat ~/.ssh/id_rsa.pub 复制本地的public key 粘贴进去
 
 
 > 在跟着该教程做下去会有几个坑
-> 1. 在第一次部署的时候,会遇到权限问题,还是因为使用的是子账号新建的 /www/website/       权限不够 使用 chmod 777 website 修改权限即可
+> 1. 在第一次部署的时候,会遇到权限问题,还是因为使用的是子账号新建的 /www/website/      
+>权限不够 使用 chmod 777 website 修改权限即可
     
-参考:
-
-https://help.github.com/articles/connecting-to-github-with-ssh/
-http://pm2.keymetrics.io/docs/usage/deployment/
+>参考:
+>* [Connecting to GitHub with SSH - GitHub Help](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
+>* [PM2 - Deployment](https://pm2.keymetrics.io/docs/usage/deployment/)
 
 
 
