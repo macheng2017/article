@@ -52,19 +52,5 @@ module.exports = {
         repoLabel: '查看源码',
         lastUpdated: '最后更新时间', // string | boolean
         smoothScroll: true,
-    },
-    plugins: [
-        [
-            'vuepress-plugin-comment',
-            {
-                choosen: 'valine',
-                // options选项中的所有参数，会传给Valine的配置
-                options: {
-                    el: '#valine-vuepress-comment',
-                    appId: 'Vj7qW5iXCwm1X1axuwN40U8Y-gzGzoHsz',
-                    appKey: 'PWnIyT3P2Pm5G41To80nib3a'
-                }
-            }
-        ]
-    ]
+    }
 }
