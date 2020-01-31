@@ -2,3 +2,4 @@ node_modules
 /docs/.vuepress/dist/
 /docs/.vuepress/config-gitignore.js
 .idea
+/docs/.vuepress/token.js

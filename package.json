@@ -22,5 +22,8 @@
   "devDependencies": {
     "vuepress": "^1.2.0",
     "vuepress-plugin-comment": "^0.7.2"
+  },
+  "dependencies": {
+    "vuepress-plugin-gitalk-maker": "^0.1.0"
   }
 }

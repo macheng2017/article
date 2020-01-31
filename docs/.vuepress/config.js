@@ -1,4 +1,7 @@
+import token from "./token";
+
 const {readdirSync} = require('fs')
+const {clientID, clientSecret} = require('./token')
 
 const getPath = path => {
     return readdirSync(`docs/${path}`).map(dir => {
@@ -52,5 +55,21 @@ module.exports = {
         repoLabel: '查看源码',
         lastUpdated: '最后更新时间', // string | boolean
         smoothScroll: true,
-    }
+    },
+    plugins: [
+        [
+            'gitalk',
+            {
+                gitalkConfig: {
+                    clientID: clientID,
+                    clientSecret: clientSecret,
+                    repo: 'article',
+                    owner: 'macheng2017',
+                    admin: ['macheng2017'],
+                    // id: location.pathname, // 无法配置默认用 location.pathname
+                    distractionFreeMode: false, // Facebook-like distraction free mode
+                },
+            },
+        ],
+    ]
 }
