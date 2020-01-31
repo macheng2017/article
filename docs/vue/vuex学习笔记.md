@@ -49,6 +49,56 @@ Action 类似于 mutation，不同在于：
 * Action 提交的是 mutation，而不是直接变更状态。
 * Action 可以包含任意异步操作。
 
+#### 提供两个action真实的案例,分别是登录和获取用户信息
+```js
+const actions = {
+  // user login
+  login({ commit }, userInfo) {
+    const { username, password } = userInfo
+    return new Promise((resolve, reject) => {
+      login({ username: username.trim(), password: password }).then(response => {
+        const { data } = response
+        console.log('data', data)
+        commit('SET_TOKEN', data.token)
+        setToken(data.token)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+// get user info
+  getInfo({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      getInfo(state.token).then(response => {
+        const { data } = response
+        if (!data) {
+          reject('Verification failed, please Login again.')
+        }
+        const { roles, name, avatar, introduction } = data
+        // console.log('getInfo data:', data)
+        // console.log('getInfo roles:', roles)
+
+        // roles must be a non-empty array
+        if (!roles || roles.length <= 0) {
+          reject('getInfo: roles must be a non-null array!')
+        }
+
+        commit('SET_ROLES', roles)
+        commit('SET_NAME', name)
+        commit('SET_AVATAR', avatar)
+        commit('SET_INTRODUCTION', introduction)
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+}
+```
+
+
+
 
 * [refactor:Action 通过 store.dispatch 方法触发： · macheng2017/review-vue@7998f5e](https://github.com/macheng2017/review-vue/commit/7998f5ecc67022b5c6359f59710e824ef9a1e57e)
 
