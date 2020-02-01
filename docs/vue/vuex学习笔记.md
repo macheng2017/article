@@ -124,6 +124,28 @@ const actions = {
     }
 ```
 
+##### 这里有个问题: set方法一直都不能正常工作,猜测是baseInfo是一个对象,如果是一个单属性值应该可以工作
+```js
+  computed: {
+    // 这里有个问题: set方法一直都不能正常工作,猜测是baseInfo是一个对象,如果是一个单属性值应该可以工作
+    // baseInfo: {
+    //   get() {
+    //     console.log('get')
+    //     return this.$store.state.tabForm.baseInfo
+    //   },
+    //   set(value) {
+    //     console.log('set')
+    //     // this.$store.commit('tabForm/SET_BASE_INFO', value)
+    //     this.$store.dispatch('tabForm/changeForm', { key: 'baseInfo', value: value })
+    //   }
+    // }
+    ...mapState({
+      baseInfo: state => state.tabForm.baseInfo
+    })
+  }
+```
+> TODO: 验证一下对象是否可以使用这种方式双向绑定表单
+>
 * [refactor:Action 通过 store.dispatch 方法触发： · macheng2017/review-vue@7998f5e](https://github.com/macheng2017/review-vue/commit/7998f5ecc67022b5c6359f59710e824ef9a1e57e)
 
 >参考:
