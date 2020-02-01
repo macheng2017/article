@@ -1,5 +1,3 @@
-import token from "./token";
-
 const {readdirSync} = require('fs')
 const {clientID, clientSecret} = require('./token')
 

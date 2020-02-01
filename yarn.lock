@@ -8594,6 +8594,14 @@ vuepress-plugin-gitalk-maker@^0.1.0:
   dependencies:
     gitalk "^1.5.0"
 
+vuepress-plugin-mygitalk@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npm.taobao.org/vuepress-plugin-mygitalk/download/vuepress-plugin-mygitalk-1.0.5.tgz#1e835d0691f7fc88395ec1224085f7ae4209aafc"
+  integrity sha1-HoNdBpH3/Ig5XsEiQIX3rkIJqvw=
+  dependencies:
+    gitalk "^1.5.0"
+    lodash "^4.17.15"
+
 vuepress-plugin-smooth-scroll@^0.0.3:
   version "0.0.3"
   resolved "https://registry.npm.taobao.org/vuepress-plugin-smooth-scroll/download/vuepress-plugin-smooth-scroll-0.0.3.tgz#6eff2d4c186cca917cc9f7df2b0af7de7c8c6438"

@@ -97,8 +97,32 @@ const actions = {
 }
 ```
 
+* [feat:使用vuex之后出现新的问题: 在父组件中使用$refs调用子组件中的校验isValidate后没有返回值,父组件的before… · macheng2017/crm-zbx-admin@a165828](https://github.com/macheng2017/crm-zbx-admin/commit/a16582859a2b115d15e7d988cb23921d7798b69a)
 
 
+```js
+  // 标签切换之前调用的钩子,用于校验表单 after success并发送action到vuex
+    beforeSwitch() {
+      console.log('a hook ', this.$refs.tabInfo[0].isValidate())
+
+      return this.$refs.tabInfo[0].isValidate()
+    },
+```
+
+```js
+    // validate form data
+    isValidate() {
+      this.$refs.baseInfo.validate((valid) => {
+        console.log('baseInfo', valid)
+        if (valid) {
+          // 校验通过则提交到store
+          // this.$store.commit('tabForm/SET_BASE_INFO', this.baseInfo)
+          this.$store.dispatch('tabForm/changeForm', this.baseInfo)
+          return true
+        }
+      })
+    }
+```
 
 * [refactor:Action 通过 store.dispatch 方法触发： · macheng2017/review-vue@7998f5e](https://github.com/macheng2017/review-vue/commit/7998f5ecc67022b5c6359f59710e824ef9a1e57e)
 
