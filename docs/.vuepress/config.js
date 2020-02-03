@@ -53,6 +53,7 @@ module.exports = {
         repoLabel: '查看源码',
         lastUpdated: '最后更新时间', // string | boolean
         smoothScroll: true,
+        lineNumbers: true,
     },
     plugins: [
         [
