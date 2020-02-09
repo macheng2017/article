@@ -21,6 +21,10 @@ module.exports = {
                 children: getPath('idea')
             },
             {
+                title: '每日定投(TheDailyRegularInvesting)',
+                children: getPath('the-daily-regular-investing')
+            },
+            {
                 title: 'JavaScript',
                 children: getPath('js')
             },
