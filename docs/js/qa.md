@@ -109,3 +109,71 @@
 // ...
 }
 ```
+
+```js
+// vuex state 中
+ items: [{}], // 项目
+// ...
+```
+
+```html
+<el-form-item label="项目:">
+<el-select
+  v-model="baseInfo.items"
+  placeholder="请选择"
+  multiple
+>
+  <el-option
+    v-for="item in itemList"
+    :key="item.value"
+    :label="item.label"
+    :value="item.value"
+  />
+</el-select>
+</el-form-item>
+```
+
+```js
+    // vuex state 中
+ items: [{}], // 项目
+// ...
+vue.runtime.esm.js:619 [Vue warn]: <transition-group> children must be keyed: <ElTag>
+// 如果 Select 的绑定值为对象类型，请务必指定 value-key 作为它的唯一性标识。
+```
+
+```js
+
+```
+[组件 | Element](https://element.eleme.cn/#/zh-CN/component/select#chuang-jian-tiao-mu)
+
+
+## 动态表单问题
+
+参考:
+> [组件 | Element](https://element.eleme.cn/#/zh-CN/component/form#dong-tai-zeng-jian-biao-dan-xiang)
+> [Vue+Element动态生成新表单并添加验证_m0_37036014的博客-CSDN博客](https://blog.csdn.net/m0_37036014/article/details/84104903)
+
+
+折腾了几个小时,才想起来vuex只能在vue的环境中使用,普通的js文件是不能识别$store
+
+## 使用选项卡的时候有几个问题:
+使用vuex保存选项卡中的所有数据有几个弊端:
+1. 数据edit表单回显的时候,会有数据残留具体表现是这样的
+    * 比如a表单中总共有10项单只填写了3项,然后从list中再打开b表单,其中填写了2项,由于a,b表单中公用了vuex的数据a的表单项会交叉干扰b的表单项
+    * 这时候如果修改了表单b中的表单项,也会干扰到打开的表单a
+    * 如果去点击创建新表单时,数据也会残留,必须先清除数据
+2. 
+
+如果让tab自己保存自己的数据,只把回显的数据放到vuex当中,这样只是从vuex读取数据,不用写入数据就不会产生其他的副作用      
+
+
+## vuex 中只保留各个组件中公共数据
+* id,用于判断是创建还是更新
+* 回显数据,因为回显数据是根据id一次性都查询出来的
+* 提交数据的通用函数
+
+
+feat:完成person回显功能,发现一个问题,刚刚修改的内容必须第二次从list中点击才能看到结果
+而且只能在
+问题好像解决了,引起问题的原因是,父子组件的生命周期的问题,父组件设置为created,子组件设置为mounted之后问题消失
+
