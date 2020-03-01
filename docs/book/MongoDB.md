@@ -9,6 +9,48 @@
 	3. 用户只能在用户所在的数据库登录,包括管理员账号
 	4. 管理员可以管理所有的数据库但是不能直接管理数据库,需要到admin认证后才可以
 
+## 使用docker-compose
+
+### 为什么要使用docker-compose
+
+如果你是使用docker启动MongoDB auth的话,就有必要使用docker-compose
+
+    如果使用docker command line arguments 运行有个问题就是,第一次运行是不加auth验证的,
+    设置完权限密码之后才能加上auth这样就导致,就会出现第二次不能启动同一个容器的问题,
+    目前我没有找到解法,只有先用docker-compose 启动,这样不会第二次在重新开个容器
+
+docker-compose.yml 默认保存在 ~下
+
+version: '2'
+services:
+  mongodb:
+    image: mongo
+    container_name: m2
+    ports:
+        - 27017:27017
+    volumes:
+        - "./data/configdb:/data/configdb"
+        - "./data/db:/data/db"
+    # command: mongod --auth
+    # tty: true
+
+运行
+
+docker-compose up -d
+
+* [docker创建带auth验证的mongodb数据库 - 掘金](https://juejin.im/post/5a560286f265da3e33043ab0)
+* [Enable mongodb authentication with docker - Rahasak-Labs - Medium](https://medium.com/rahasak/enable-mongodb-authentication-with-docker-1b9f7d405a94)
+* [基于Docker的MongoDB实现授权访问](https://blog.igevin.info/posts/docker-mongo-auth/)
+* [Overview of Docker Compose | Docker Documentation](https://docs.docker.com/compose/)
+
+进入容器
+docker -it exec m2 mongo bash
+
+进入数据库并使用 admin
+docker -it exec m2 mongo admin
+
+
+## MongoDB设置
 
 ### 设置超级管理员
 
@@ -124,13 +166,13 @@ db: 'admin'
     mongoexport -h 127.0.0.1:38995 -d xxxx_movie -u xxxx_movie_wheel -p mima -c users -q '{"name":{$ne:null} }' -o ./movie-users-old.json   
 
 下载
-    scp -P 56666 mac@120.27.111.200:/home/mac/db/indust-app-old.tar.gz ./
+    scp -P 56666 root@120.xxxx.xxxx.200:/home/mac/db/indust-app-old.tar.gz ./
 
-    scp -P 56666 mac@120.27.111.200:/home/mac/db/indust-app-old.json ./
+    scp -P 56666 root@120.xxxx.xxxx.200:/home/mac/db/indust-app-old.json ./
 
 上传
 
-    scp -P 56666 ~/github/indust-app.tar.gz mac@120.27.111.200:/home/mac/dbbackup/
+    scp -P 56666 ~/github/indust-app.tar.gz root@120.xxxx.xxxx.200:/home/root/dbbackup/
 
 
 正在运行的mongodb 
@@ -151,3 +193,5 @@ db: 'admin'
 导入
 
     mongorestore -h 127.0.0.1:19999 -d indust-app-target -u indust_app_target -p indust_target ./newdb/indust-app-old/indust-app
+
+
