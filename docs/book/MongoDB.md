@@ -19,8 +19,17 @@
     设置完权限密码之后才能加上auth这样就导致,就会出现第二次不能启动同一个容器的问题,
     目前我没有找到解法,只有先用docker-compose 启动,这样不会第二次在重新开个容器
 
-docker-compose.yml 默认保存在 ~下
+### 安装docker-compose 
+如果按照官网教程,使用这个估计的吐血
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
+这里有个镜像网站,浪费了半个小时才想起来
+
+[DaoCloud | Docker 极速下载](https://get.daocloud.io/)
+
+
+docker-compose.yml 默认保存在 ~下
+```yaml
 version: '2'
 services:
   mongodb:
@@ -33,6 +42,8 @@ services:
         - "./data/db:/data/db"
     # command: mongod --auth
     # tty: true
+```
+
 
 运行
 

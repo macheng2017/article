@@ -81,3 +81,106 @@ postgres是在linux安装postgreSQL 自动创建的一个Superuser下图说明�
    postgreSQL的基本知识
 ### preview
    慢慢回顾go语言基本语法
+   
+  ## 使用ip + 端口号配置
+```yaml
+server {
+    # listen 443 ssl http2;
+    listen 80;
+    #server_name group.test.com;
+    server_name 1xx.1xxx.1xxx.xxx;
+    # ssl on;
+    # ssl_certificate /etc/nginx/conf.d/cert/group.test.com_bundle.crt;
+    # ssl_certificate_key /etc/nginx/conf.d/cert/group.test.com.key;
+    # ssl_session_timeout 5m;
+    # ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    # ssl_ciphers xxxxxxxx;
+    # ssl_prefer_server_ciphers on;
+
+    root /var/www/test/dist;
+    index index.html index.htm;
+    charset utf-8;
+
+    gzip            on;
+    gzip_comp_level 5;
+    gzip_min_length 256;
+    gzip_proxied    any;
+    gzip_types
+      application/atom+xml
+      application/javascript
+      application/json
+      application/ld+json
+      application/manifest+json
+      application/rss+xml
+      application/vnd.geo+json
+      application/vnd.ms-fontobject
+      application/x-font-ttf
+      application/x-web-app-manifest+json
+      application/xhtml+xml
+      application/xml
+      font/opentype
+      image/bmp
+      image/svg+xml
+      image/x-icon
+      text/cache-manifest
+      text/css
+      text/plain
+      text/vcard
+      text/vnd.rim.location.xloc
+      text/vtt
+      text/x-component
+      text/x-cross-domain-policy;
+
+    # 注意，这里有修改，前端跳转路径变了
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+      expires max;
+      try_files $uri =404;
+    }
+
+    location / {
+
+        try_files /index.html =404;
+        }
+}
+
+```
+
+```yaml
+upstream test {
+        server 127.0.0.1:7001 fail_timeout=0;
+}
+
+server {
+    # listen 443 ssl http2;
+    listen 7002;
+    server_name 1xxx.1xxx.1xxx.xxxx;
+    # ssl on;
+    # ssl_certificate /etc/nginx/conf.d/cert/api.test.com_bundle.crt;
+    # ssl_certificate_key /etc/nginx/conf.d/cert/api.test.com.key;
+    # ssl_session_timeout 5m;
+    # ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    # ssl_ciphers xxxxxxxx;
+    # ssl_prefer_server_ciphers on;
+
+    index index.html index.htm;
+
+    charset utf-8;
+
+    gzip            on;
+    gzip_comp_level 5;
+    gzip_proxied    any;
+    gzip_types      *;
+
+    location / {
+        proxy_set_header  X-Real-IP  $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header  X_FORWARDED_PROTO $scheme;
+        proxy_set_header  Host $http_host;
+        proxy_redirect    off;
+        client_max_body_size 1M;
+
+        proxy_pass http://test;
+        }
+
+ }
+```
