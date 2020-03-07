@@ -10,3 +10,69 @@
 7. 安装[VuePress](https://vuepress.vuejs.org/zh/
 8. 使用ssh无密码登录GitHub
 
+
+
+## 3. 将域名解析到GitHub服务器上(参考区块链小白书最后部分)
+
+    你需要在域名服务商的页面中，为自己的域名添加以下 4 条 A 记录和 1 条 CNAME 记录：
+    
+    A 记录：
+    
+    185.199.108.153
+    185.199.109.153
+    185.199.110.153
+    185.199.111.153
+    CNAME
+    
+    host: www
+    
+    Answer: your-github-username.github.io
+* [区块链小白书](https://blockchainlittlebook.com/#/?id=%e5%85%b3%e4%ba%8e%e6%9c%ac%e4%b9%a6)
+
+## 安装nvm
+nvm是一个 node.js的版本管理器,安装这个是方便以后node.js更新以及多版本之间的切换
+或者不使用nvm 直接安装[Node.js](https://nodejs.org/en/)也可以
+
+1. macOS或linux安装方式
+[nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)
+2. windows系统 
+[Releases · coreybutler/nvm-windows](https://github.com/coreybutler/nvm-windows/releases)
+3. 测试是否安装成功
+        
+        在terminal中输入 nvm  或者 nvm version
+4. 使用nvm安装最新版node.js
+    
+        nvm install node latest
+        或者指定版本号
+        nvm install 12.16.1
+     
+     如果中间出错具体参考
+      
+   [nvm-sh/nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions](https://github.com/nvm-sh/nvm)  
+    
+        
+5. node.js是一个js的运行环境
+    而安装好node.js 之后其中会附带一个包管理工具npm
+    
+        npm -v 查看npm版本
+        
+
+
+## 安装vuePress
+[VuePress](https://vuepress.vuejs.org/zh/)是一个静态网站生成器,
+可以将你的项目下面以markdown格式保存的文档生自动转换为HTML文件
+### 安装方式
+
+    npm install -g vuepress
+    
+    # 创建项目目录
+    mkdir vuepress-starter && cd vuepress-starter
+    
+    # 新建一个 markdown 文件
+    echo '# Hello VuePress!' > README.md
+    
+    # 开始写作
+    vuepress dev .
+    
+    # 构建静态文件
+    vuepress build .
